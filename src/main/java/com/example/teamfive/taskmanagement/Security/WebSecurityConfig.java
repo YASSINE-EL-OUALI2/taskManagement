@@ -59,20 +59,33 @@ public class WebSecurityConfig {
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(
-                        auth -> auth.requestMatchers("/api/auth/**", "/v3/api-docs/**", "/swagger-ui/**", "/api/roles/**","/api/users/**").permitAll()
+                        auth -> auth
+                                    .requestMatchers("/api/auth/**", "/v3/api-docs/**", "/swagger-ui/**").permitAll()
                                     .requestMatchers("/api/test/**").hasAnyRole("ADMIN", "USER")
                                     
                                     .requestMatchers("/api/comment/getAll").hasAnyRole("ADMIN", "USER")
                                     .requestMatchers("/api/comment/add").hasRole("ADMIN")
                                     .requestMatchers("/api/comment/update").hasRole("ADMIN")
                                     .requestMatchers("/api/comment/delete").hasRole("ADMIN")
-                                    .requestMatchers("/api/comment/getUserById").hasAnyRole("ADMIN", "USER")
+                                    .requestMatchers("/api/comment/getCommentById").hasAnyRole("ADMIN", "USER")
+
+                                    .requestMatchers("/api/roles/getAll").hasAnyRole("ADMIN", "USER")
+                                    .requestMatchers("/api/roles/add").hasRole("ADMIN")
+                                    .requestMatchers("/api/roles/update").hasRole("ADMIN")
+                                    .requestMatchers("/api/roles/delete").hasRole("ADMIN")
+                                    .requestMatchers("/api/roles/getCommentById").hasAnyRole("ADMIN", "USER")
+
+                                    .requestMatchers("/api/users/getAll").hasAnyRole("ADMIN", "USER")
+                                    .requestMatchers("/api/users/add").hasRole("ADMIN")
+                                    .requestMatchers("/api/users/update").hasRole("ADMIN")
+                                    .requestMatchers("/api/users/delete").hasRole("ADMIN")
+                                    .requestMatchers("/api/users/getCommentById").hasAnyRole("ADMIN", "USER")
 
                                     .requestMatchers("/api/task/getAll").hasAnyRole("ADMIN", "USER")
                                     .requestMatchers("/api/task/add").hasRole("ADMIN")
                                     .requestMatchers("/api/task/update").hasRole("ADMIN")
                                     .requestMatchers("/api/task/delete").hasRole("ADMIN")
-                                    .requestMatchers("/api/task/getUserById").hasAnyRole("ADMIN", "USER")
+                                    .requestMatchers("/api/task/getTaskById").hasAnyRole("ADMIN", "USER")
 
                                     .anyRequest().authenticated()
                                 );
