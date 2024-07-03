@@ -5,6 +5,8 @@ import java.util.Date;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.lang.NonNull;
 
+import com.example.teamfive.taskmanagement.Entity.Authentication.Users;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

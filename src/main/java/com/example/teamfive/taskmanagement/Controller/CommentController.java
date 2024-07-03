@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.teamfive.taskmanagement.Entity.Comment;
 import com.example.teamfive.taskmanagement.Service.CommentService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
 @RestController
 @RequestMapping("/api/comment")
+@SecurityRequirement(name = "bearerAuth")
 public class CommentController {
 
     @Autowired
@@ -31,7 +34,7 @@ public class CommentController {
         return commentService.getAll();
     }
 
-    @GetMapping("/getById")
+    @GetMapping("/getCommentById")
     public Comment getCommentById(Long id){
         return commentService.getCommentById(id);
     }

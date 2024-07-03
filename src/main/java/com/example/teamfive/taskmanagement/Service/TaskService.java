@@ -6,8 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.teamfive.taskmanagement.Entity.Task;
-import com.example.teamfive.taskmanagement.Entity.Users;
+import com.example.teamfive.taskmanagement.Entity.Authentication.Users;
 import com.example.teamfive.taskmanagement.Repository.TaskRepository;
+import com.example.teamfive.taskmanagement.Service.Authentication.UsersService;
 
 @Service
 public class TaskService {
@@ -52,7 +53,7 @@ public class TaskService {
         return null;
     }
 
-    public void deleteTask(Task task){
+    public void deleteTask(Task task) {
         taskRepository.delete(task);
     }
 }

@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.teamfive.taskmanagement.Entity.Task;
 import com.example.teamfive.taskmanagement.Service.TaskService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
 @RestController
 @RequestMapping("/api/task")
+@SecurityRequirement(name = "bearerAuth")
 public class TaskController {
 
     @Autowired

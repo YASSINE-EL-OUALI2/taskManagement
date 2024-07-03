@@ -1,4 +1,4 @@
-package com.example.teamfive.taskmanagement.Controller;
+package com.example.teamfive.taskmanagement.Controller.Authentication;
 
 import java.util.List;
 
@@ -11,11 +11,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.teamfive.taskmanagement.Entity.Users;
-import com.example.teamfive.taskmanagement.Service.UsersService;
+import com.example.teamfive.taskmanagement.Entity.Authentication.Users;
+import com.example.teamfive.taskmanagement.Service.Authentication.UsersService;
+
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 @RestController
 @RequestMapping("/api/users")
+//@SecurityRequirement(name = "bearerAuth")
 public class UsersController {
 
     @Autowired

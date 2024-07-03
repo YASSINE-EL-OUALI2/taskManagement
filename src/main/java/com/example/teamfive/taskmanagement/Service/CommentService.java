@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.example.teamfive.taskmanagement.Entity.Comment;
 import com.example.teamfive.taskmanagement.Entity.Task;
-import com.example.teamfive.taskmanagement.Entity.Users;
+import com.example.teamfive.taskmanagement.Entity.Authentication.Users;
 import com.example.teamfive.taskmanagement.Repository.CommentRepository;
 import com.example.teamfive.taskmanagement.Repository.TaskRepository;
-import com.example.teamfive.taskmanagement.Repository.UsersRepository;
+import com.example.teamfive.taskmanagement.Repository.Authentication.UsersRepository;
 
 @Service
 public class CommentService {
@@ -51,25 +51,25 @@ public class CommentService {
         return null;
     }
 
-    public void testEntityRelations(Comment comment) throws Exception{
+    public void testEntityRelations(Comment comment) throws Exception {
         Long taskId = Optional.ofNullable(comment.getTask()).map(Task::getTaskId).orElse(null);
-        if(taskId != null){
-            Task existingTask = taskRepository.findById(taskId).orElseThrow(()-> new Exception("Task not present for this comment"));
+        if (taskId != null) {
+            Task existingTask = taskRepository.findById(taskId)
+                    .orElseThrow(() -> new Exception("Task not present for this comment"));
             comment.setTask(existingTask);
         }
 
         Long userId = Optional.ofNullable(comment.getUser()).map(Users::getUserId).orElse(null);
-        if(userId != null){
-            Users existingUser = usersRepository.findById(userId).orElseThrow(()-> new Exception("User not present for this comment"));
+        if (userId != null) {
+            Users existingUser = usersRepository.findById(userId)
+                    .orElseThrow(() -> new Exception("User not present for this comment"));
             comment.setUser(existingUser);
         }
 
-
     }
 
-    public void deleteComment(Comment comment){
+    public void deleteComment(Comment comment) {
         commentRepository.delete(comment);
     }
-
 
 }
